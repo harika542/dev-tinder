@@ -12,6 +12,48 @@ res.send("user added sucessfully");}
 catch(err){
   console.log("no we got error");
 }});
+app.get("/user",async (req,res)=>{
+  const userEmail=req.body.emailId;
+  try{
+    console.log(userEmail);
+    const abc=await User.findOne({emailId:userEmail});
+    res.send(abc);
+  }
+  catch(err){
+    res.send("it is the error re");
+  }
+});
+app.delete("/user",async (req,res)=>{
+  const userId=req.body.userid;
+  console.log(userId);
+  try{
+    await User.findByIdAndDelete(userId);
+    res.send("user deleted successfully");
+  }
+  catch(err){
+    res.status(404).send("error re");
+  }
+});
+app.patch("/user",async (req,res)=>{
+  const userId=req.body.userid;
+  const data=req.body;
+  try{
+    await User.findByIdAndUpdate({_id:userId},data);
+    res.send("updated Successfully");
+  }
+  catch(err){
+    res.send("error re");
+  }
+});
+app.get("/id",async (req,res)=>{
+  const userId=req.body._id;
+  try{
+    res.send(await User.findById(userId));
+  }
+  catch(err){
+    res.send("error re");
+  }
+});
 connect().then(
   ()=>{
     console.log("database connection extablished");
