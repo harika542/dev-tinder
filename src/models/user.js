@@ -46,7 +46,8 @@ const UserSchema=new mongoose.Schema({
   },
   photourl:{
     type:String,
-    default:"https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.pinterest.com%2F29bribri29%2Fbasic-pfp%2F&ved=0CBYQjRxqFwoTCPiMvY2hqZIDFQAAAAAdAAAAABAj&opi=89978449",
+    default:"https://cdn-icons-png.flaticon.com/512/149/149071.png"
+,
     validate(value){
       if(!validator.isURL(value)){
         throw new Error("invalid url");

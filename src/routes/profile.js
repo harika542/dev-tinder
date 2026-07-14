@@ -15,6 +15,7 @@ profileRouter.get("/profile/view",userAuth,async (req,res)=>{
 });
 profileRouter.patch("/profile/edit",userAuth,async (req,res)=>{
   try{
+    console.log("REQ BODY 👉", req.body);
     if(!validateEditprofileData(req)){
       throw new Error("Invalid Edit Request");
     }
@@ -27,7 +28,9 @@ profileRouter.patch("/profile/edit",userAuth,async (req,res)=>{
         data:loggedInuser,
       });}
   catch(err){
-    res.status(400).send("Error: "+err.message);
+    res.status(400).json({
+    message: err.message
+  });
   }
 });
 profileRouter.patch("/profile/password", userAuth, async (req, res) => {

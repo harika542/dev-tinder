@@ -64,11 +64,12 @@ requestRouter.post("/request/review/:status/:requestId",userAuth,async (req,res)
         message:"coneection request is not valid"
       });
     }
+    //console.log(connectionRequest);
     connectionRequest.status=status;
     const data=await connectionRequest.save();
     res.json({
       message:"connection request is"+status,
-      data,
+      data
     });
   }
   catch(err){
