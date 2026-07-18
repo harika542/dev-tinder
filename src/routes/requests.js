@@ -3,6 +3,7 @@ const requestRouter=express.Router();
 const {userAuth}=require("../middlewares/auth");
 const ConnectionRequest=require("../models/connectionRequest");
 const User=require("../models/user");
+const sendEmail=require("../utills/sendEmail");
 requestRouter.post("/request/send/:status/:toUserId",userAuth,async (req,res)=>{
   try{
     const fromUserId=req.user._id;
@@ -36,6 +37,8 @@ requestRouter.post("/request/send/:status/:toUserId",userAuth,async (req,res)=>{
       status,
     });
     const data=await connectionRequest.save();
+     const emailRes= await sendEmail.run();
+     console.log(emailRes);
   res.json({
     message:
     req.user.firstName+"is"+status+"in"+toUser.firstName,

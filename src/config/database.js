@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const connect = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://harikagidituri_db_user:Harii542@cluster0.1tptfv7.mongodb.net/devTinder?appName=Cluster0"
+  "mongodb+srv://harikagidituri_db_user:Harika542123@cluster0.1tptfv7.mongodb.net/devTinder?appName=Cluster0"
     );
     console.log("MongoDB Connected");
   } catch (err) {
