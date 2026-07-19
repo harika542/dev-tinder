@@ -5,6 +5,8 @@ const User=require("../models/user");
 const {validatesignupdata}=require("../utills/validation");
 authRouter.post("/signup",async (req,res)=>{
   try{
+
+    console.log('1')
     // vlaidation of sign up data
     validatesignupdata(req);
     //encrypt the data
@@ -17,6 +19,7 @@ authRouter.post("/signup",async (req,res)=>{
     emailId,
     password:passwordhash,
    });
+
   const saveduser=await user.save();
   const token=await saveduser.getjwt();
   res.cookie("token",token,{httpOnly: true,
@@ -28,6 +31,10 @@ res.json({message:"user added sucessfully",data:saveduser});}
 catch(err){
   res.send("no we got error"+err);
 }});
+
+
+
+
 authRouter.post("/login",async (req,res)=>{
   try{
     const{emailId,password}=req.body;

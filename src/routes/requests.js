@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express=require("express");
 const requestRouter=express.Router();
 const {userAuth}=require("../middlewares/auth");
@@ -37,11 +38,13 @@ requestRouter.post("/request/send/:status/:toUserId",userAuth,async (req,res)=>{
       status,
     });
     const data=await connectionRequest.save();
-     const emailRes= await sendEmail.run();
+    console.log("Before sendEmail");
+     const emailRes= await sendEmail.run("You got  new friend request from"+req.user.firstName,
+      req.user.firstName+"is"+status+"in"+toUser.firstName);
      console.log(emailRes);
   res.json({
     message:
-    req.user.firstName+"is"+status+"in"+toUser.firstName,
+    req.user.firstName+" is "+status+" in "+toUser.firstName,
     data,
   });
   }

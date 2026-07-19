@@ -3,6 +3,7 @@ const app=express();
 const connect=require("./config/database");
 const cookieparser=require("cookie-parser");
 const cors=require("cors");
+require('dotenv').config();
 app.use(cors({
   origin: "http://localhost:5173",
   credentials: true
@@ -20,7 +21,7 @@ app.use("/",userRouter);
 connect().then(
   ()=>{
     console.log("database connection extablished");
-    app.listen(7777,
+    app.listen(3000,
   ()=>{
     console.log("succesfully listening re");
   }
